@@ -52,7 +52,7 @@ const Header = () => {
         </button>
         </div>
         <div className="flex items-center space-x-4">
-        <span>Wishlist (0)</span>
+        {/* <span>Wishlist (0)</span> */}
         <button onClick={() => setIsModalOpen(true)} className="hover:text-white">
           Login / Sign Up
         </button>

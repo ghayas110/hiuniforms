@@ -5,7 +5,7 @@ const MaleFemaleSection = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
       {/* Male Section */}
-      <Link href="/mens">
+      <Link href="/product-category/mens">
         <div className="relative group cursor-pointer">
           <Image
             src="/men.jpg" // Replace with actual path
@@ -23,7 +23,7 @@ const MaleFemaleSection = () => {
       </Link>
 
       {/* Female Section */}
-      <Link href="/womens">
+      <Link href="/product-category/womens">
         <div className="relative group cursor-pointer">
           <Image
             src="/women.jpg" // Replace with actual path

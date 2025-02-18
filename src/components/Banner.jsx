@@ -8,8 +8,8 @@ import Image from "next/image";
 
 const BannerSlider = () => {
   const slides = [
-    "/images/slide1.webp", // Change to your actual image paths
-    "/images/slide2.png",
+    "/images/slide1.webp", 
+    "/images/slide1.jpg",
   ];
 
   return (
@@ -17,15 +17,21 @@ const BannerSlider = () => {
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         loop={true}
-        autoplay={{ delay: 4000 }}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         navigation
-        className="w-full h-auto"
+        className="w-full"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-[90vh]">
-              <Image src={slide} alt={`Slide ${index + 1}`} layout="fill" objectFit="cover"  />
+            <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px]">
+              <Image 
+                src={slide} 
+                alt={`Slide ${index + 1}`} 
+                layout="fill" 
+                objectFit="cover"
+                priority={index === 0} // Ensures the first slide loads faster
+              />
             </div>
           </SwiperSlide>
         ))}

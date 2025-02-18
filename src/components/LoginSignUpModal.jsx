@@ -1,9 +1,28 @@
+"use client"
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const LoginSignupModal = ({ isModalOpen, closeModal }) => {
   const [isSignUp, setIsSignUp] = useState(false);
+  const router = useRouter();
+const [form, setForm] = useState({
+  name: "",
+  email: "",
+  password: "",
+})
+const handdleSubmit = (e) => {
+  e.preventDefault();
 
+  if (isSignUp) {
+    // Handle sign up logic here
+  } else {
+    // Handle login logic here
+    closeModal();
+    router.push("/dashboard");
+  }
+
+}
   if (!isModalOpen) return null;
 
   return (
@@ -22,7 +41,7 @@ const LoginSignupModal = ({ isModalOpen, closeModal }) => {
           <h2 className="text-2xl font-bold mb-4">{isSignUp ? "Create an Account" : "Log in to your Account"}</h2>
           <p className="text-gray-600 mb-6">{isSignUp ? "Join us today!" : "Welcome back!"}</p>
 
-          <form>
+          <form onSubmit={handdleSubmit}>
             {/* Name Field (Only for Sign Up) */}
             {isSignUp && (
               <div className="mb-4">
@@ -30,6 +49,8 @@ const LoginSignupModal = ({ isModalOpen, closeModal }) => {
                   type="text"
                   placeholder="Name"
                   className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#A7D9E6]"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
               </div>
             )}
@@ -40,6 +61,8 @@ const LoginSignupModal = ({ isModalOpen, closeModal }) => {
                 type="email"
                 placeholder="Email"
                 className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#A7D9E6]"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
               />
             </div>
 
@@ -49,6 +72,9 @@ const LoginSignupModal = ({ isModalOpen, closeModal }) => {
                 type="password"
                 placeholder="Password"
                 className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#A7D9E6]"
+                value={form.password}
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
+
               />
             </div>
 
